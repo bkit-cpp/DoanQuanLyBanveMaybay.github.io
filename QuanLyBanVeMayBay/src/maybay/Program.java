@@ -8,6 +8,7 @@ public class Program {
         KhachHang[]kh=new KhachHang[10];
 		QLDanhSachKhachHang ql=new QLDanhSachKhachHang(0,kh);
 		DatVe dv=new DatVe();
+		Hangve hv=new Hangve();
 		do
 		{
 			System.out.println("\t\t\t\t ***********************************************\t\t\t\t\t\t");
@@ -27,9 +28,11 @@ System.out.println("\t\t\t\t *        3. Thoat                             *\t\t
 	     break;
 		case 2:
 	     dv.input();
+	     hv.nhap();
 			dv.toString();
 			dv.tongtienphaitra();
-			dv.tongtienphaitra();
+			hv.toString();
+			hv.tongtienphaitra();
 			break;
 		case 3:
 			System.out.println("See you again");
