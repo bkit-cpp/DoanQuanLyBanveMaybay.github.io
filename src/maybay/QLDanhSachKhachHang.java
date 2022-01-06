@@ -2,7 +2,7 @@ package maybay;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.io.*;
-public class QLDanhSachKhachHang extends KhachHang {
+public class QLDanhSachKhachHang extends KhachHang implements DocghiFile {
 	int n;
 public KhachHang[]kh;
 public QLDanhSachKhachHang(String makhachHang, String diaChi, int sohanhLi, String choNgoi, String loaiVe, String hangVe) {
@@ -31,63 +31,85 @@ kh.loaiVe=sc.nextLine();
 	System.out.println( "Nhap Hang ve");
 	kh.hangVe=sc.nextLine();
 	}
+@Override
 public void docfile()
 {
+	kh=new KhachHang[0];
+	String lineKhachHang;
+	String makhachHang,diaChi,choNgoi,loaiVe,hangVe;
+	int sohanhLi;
+	for(int i=0;i<kh.length;)
+	{
+		
 	try {
-		FileReader fr=new FileReader("C:/InputKH.txt");
+		FileReader fr=new FileReader("InputKH.txt");
 		BufferedReader br=new BufferedReader(fr);
+		if(fr!=null)
+		{
+			System.out.println("Doc file khong thanh cong");
+		}
 		while(true)
 		{
-			String line=br.readLine();
-			if(line==null)
-			{
+			lineKhachHang=br.readLine();
+			if(lineKhachHang==null)
 				break;
-			}
-			String []t=line.split("--");
-			String makhachHang=t[0];
-			String diaChi=t[1];
-			int sohanhLi=Integer.parseInt(t[2]);
-			String choNgoi=t[3];
-			String loaiVe=t[4];
-			String hangVe=t[5];
 			if(kh[0]!=null)
-			kh=Arrays.copyOf(kh,kh.length+1);
-			kh[kh.length-1]=new QLDanhSachKhachHang(makhachHang,diaChi,sohanhLi,choNgoi,loaiVe,hangVe);
+				kh=Arrays.copyOf(kh,kh.length+1 );
+			String listkh[]=lineKhachHang.split(";");
+			makhachHang=listkh[0];
+			diaChi=listkh[1];
+			choNgoi=listkh[2];
+			loaiVe=listkh[3];
+			hangVe=listkh[4];
+			sohanhLi=Integer.parseInt(listkh[5]);
+			kh[i]=new QLDanhSachKhachHang(i, kh);
+			kh[i].setMakhachHang(makhachHang);
+			kh[i].setDiaChi(diaChi);
+			kh[i].setChoNgoi(choNgoi);
+			kh[i].setLoaiVe(loaiVe);
+			kh[i].setHangVe(hangVe);
+			kh[i].setSohanhLi(sohanhLi);
+			i++;
 		}
+		br.close();
+		fr.close();
 		
 	}catch(IOException e) {
 		System.out.println("Error");
+		break;
+	}
 	}
 }
+@Override
 public void ghifile()
 {
+	if(kh==null) 
+		System.out.println("Danh sach rong! Ghi that bai ");
 	try {
-	FileWriter fw=new FileWriter("C:/OutputKH.txt");
+	FileWriter fw=new FileWriter("InputKH.txt");
 	BufferedWriter bw=new BufferedWriter(fw);
 	for(int i=0;i<kh.length;i++)
 	{
-		bw.write(kh[i].getMakhachHang());
+		if(kh[i]==null)
+			continue;
+		else {
+		bw.write(kh[i].XuatFileKhachHang());
 		bw.newLine();
-		bw.write(kh[i].getDiaChi());
-		bw.newLine();
-		bw.write(kh[i].getChoNgoi());
-		bw.newLine();
-		bw.write(kh[i].getSohanhLi());
-		bw.newLine();
-		bw.write(kh[i].getLoaiVe());
-		bw.newLine();
-		bw.write(kh[i].getHangVe());
-		bw.newLine();
+		}
+		System.out.println("Ghi File Thanh Cong");
+		bw.close();
+		fw.close();
 	}
 	}catch(IOException e)
 	{
 		System.out.println("Error");
 	}
 }
+
 public void LaPDs(int i, KhachHang[]kh)
 {
-	kh[i]=new KhachHang();
 	Scanner sc=new Scanner(System.in);
+	kh[i]=new KhachHang();
 	do {
 System.out.println("\t\t\t\t****************************************************\t\t\t\t");
 System.out.println("\t\t\t\t*        1.Nhap Thong tin Khach Hang               *\t\t\t\t");
@@ -97,7 +119,8 @@ System.out.println("\t\t\t\t*        4.Them thong tin Khach Hang theo ID       *
 System.out.println("\t\t\t\t*        5. Xoa thong tin Khach Hang theo ID       *\t\t\t\t");
 System.out.println("\t\t\t\t*        6.Sap xep thong tin tang dan theo Cho ngoi*\t\t\t\t ");
 System.out.println("\t\t\t\t*        7.Hien thi thong tin khach hang           *\t\t\t\t");
-System.out.println("\t\t\t\t*        8.Thoat                                   *\t\t\t\t ");
+System.out.println("\t\t\t\t*        8.Khach Hang co so hanh ly nhieu nhat     *\t\t\t\t");
+System.out.println("\t\t\t\t*        9.Thoat                                   *\t\t\t\t ");
 System.out.println("\t\t\t\t****************************************************\t\t\t\t\t");
 System.out.println("Moi Nhap Lua Chon");
 		int choice=Integer.parseInt(sc.nextLine());
@@ -156,10 +179,10 @@ System.out.println("Moi Nhap Lua Chon");
 			input(kh[B]);
 				break;	
 		case 5:
-			while(kh.length>0)
+			while(kh.length!=0)
 			{
 			KhachHang customer=new KhachHang();
-			
+			System.out.println("Nhap ma khach hang");
 			customer.makhachHang=sc.nextLine();
 			for( i = 0; i < kh.length-1; i++)
 	        {
@@ -167,8 +190,9 @@ System.out.println("Moi Nhap Lua Chon");
 	        if(kh[i].makhachHang.equals(customer.makhachHang))
 	            {
 	            for(int j = i; j <kh.length; j++)
+	            {
 	            kh[j] = kh[j+1];
-	            
+	            }
 	             break;
 	            }
 	        }
@@ -181,7 +205,7 @@ System.out.println("Moi Nhap Lua Chon");
 			{
 				for(int j=i+1;j<kh.length;j++)
 				{
-					if(kh[i].choNgoi.compareTo(kh[j].choNgoi)>0)
+					if(kh[i].choNgoi.compareTo(kh[j].choNgoi)<0)
 					{
 					t=kh[i];
 					kh[i]=kh[j];
@@ -190,7 +214,6 @@ System.out.println("Moi Nhap Lua Chon");
 					}
 				}
 			}
-			System.out.println("OK");
 			break;
 		case 7:
 			for(i=0;i<kh.length;i++)
@@ -199,13 +222,24 @@ System.out.println("Moi Nhap Lua Chon");
 			}
 			break;
 		
-		
 		case 8:
+		int max=kh[0].sohanhLi;
+		for(i=0;i<kh.length;i++)
+		{
+			if(kh[i].sohanhLi>max)
+			{
+				max=kh[i].sohanhLi;
+			}
+		}
+		System.out.println("Hanh Khach co nhieu hanh ly nhat:"+max);
+			break;
+		case 9:
 			System.out.println("Cam on da su dung Dich vu, See you again");
 			break;
 		}
-	}
 		
+	}
+	
 	while(true);
 }
 }

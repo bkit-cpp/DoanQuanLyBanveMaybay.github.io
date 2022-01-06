@@ -56,6 +56,7 @@ public class DatVe extends VeChuyenBay{
 		}
 		else
 		{
+			
 			System.out.println("OK");
 		}
 		
@@ -69,6 +70,7 @@ public class DatVe extends VeChuyenBay{
 		System.out.println("Ket qua:"+s);
 		
 	}
+	
 	public String toString()
 
 	{

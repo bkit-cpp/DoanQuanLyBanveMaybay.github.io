@@ -65,7 +65,7 @@ public void nhap()
 public String toString()
 {
 	super.toString();
-	return "Ma Chuyen Bay:"+machuyenBay+"noiDi:"+noiDi+"noiDen:"+noiDen+"ngaykhoiHanh:"+ngaykhoiHanh+"Cong:"+cong;
+	return "Ma Chuyen Bay:"+" "+machuyenBay+" "+"noiDi:"+" "+noiDi+"noiDen:"+" "+noiDen+"ngaykhoiHanh:"+" "+ngaykhoiHanh+"Cong:"+" "+cong;
 }
 
 }

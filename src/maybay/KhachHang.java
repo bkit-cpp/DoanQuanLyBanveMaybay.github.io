@@ -1,7 +1,7 @@
 package maybay;
 import java.util.Arrays;
 import java.util.Scanner;
-public class KhachHang implements TongCong {
+public class KhachHang implements DocghiFile  {
 	KhachHang[]kh;
 	protected  String makhachHang;
 	protected String diaChi;
@@ -62,15 +62,16 @@ public class KhachHang implements TongCong {
 	  return makhachHang+" "+diaChi+" "+choNgoi+" "+loaiVe+" "+hangVe+" "+sohanhLi;
 		 
 	 }
-	 public void TongsoNguoi() {
-		 Scanner sc=new Scanner(System.in);
-		 System.out.println("Nhap so cho ngoi");
-		 int a=Integer.parseInt(sc.nextLine());
-		 System.out.println("Nhap so ma khach hang");
-		 int b=Integer.parseInt(sc.nextLine());
-		 int s=a*b;
-		 System.out.println("Tong so hanhKhach:"+s);
-	 }
-	 
+	 public String XuatFileKhachHang() {
+	        return (makhachHang + ";" + diaChi + ";" + choNgoi + ";" + loaiVe + ";" + hangVe+";"+sohanhLi);
+	    }
+	@Override
+	 public void docfile() {
+		
+	}
+	@Override
+	public void ghifile() {
+		
+	}
 	
 }
