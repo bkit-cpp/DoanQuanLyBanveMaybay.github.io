@@ -8,7 +8,6 @@ public class DatVe extends VeChuyenBay{
 		
 	}
 	public DatVe(int ngaydatVe, String maphieuDat, int soGhe) {
-		super();
 		this.ngaydatVe = ngaydatVe;
 		this.maphieuDat = maphieuDat;
 		this.soGhe = soGhe;
@@ -35,7 +34,7 @@ public class DatVe extends VeChuyenBay{
 	
 	public void input()
 	{
-		super.nhap();
+		super.nhap();;
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Nhap ngay dat ve");
 		ngaydatVe=Integer.parseInt(sc.nextLine());
@@ -74,6 +73,7 @@ public class DatVe extends VeChuyenBay{
 	public String toString()
 
 	{
+		super.toString();
 		return "ngaydatve:"+ngaydatVe+"maphieudat:"+maphieuDat+"soghe:"+soGhe;
 	}
 	
