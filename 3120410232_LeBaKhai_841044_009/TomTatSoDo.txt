@@ -1,0 +1,9 @@
+Tóm tắt sơ đồ
++Gồm các class lớn là máy bay, Khách Hàng, Vé Chuyến Bay
++ Máy Bay gồm các class con: Tuyến Bay, Lịch Bay,Sân Bay, Hãng Máy Bay,  Tuyến Bay,QLDanhSach Chuyến Bay
++Khách Hàng gồm các class con: QL Danh sách Khách Hàng, Vé Chuyến Bay
++Vé Chuyến  Bay gồm các class con: Hạng Vé, Đặt vé, Đơn giá 
++Đặt vé gồm cácc class con: QuanLyDatVeMayBay
++Lớp Tuyến Bay gồm các class con: Chuyến Bay, Lộ Trình
++Lớp Inteface gồm các hàm docfile, ghifile nối với các class QL Danh sách Khách Hàng, QLDanhSach Chuyến Bay, QuanLyDatVeMayBay
++Lớp Program để khởi động chương trình
